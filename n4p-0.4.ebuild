@@ -2,18 +2,22 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
+
+inherit eutils
 
 DESCRIPTION="Configures network variables automatically for MITM, ARP, and SSLstriping attacks"
 HOMEPAGE="https://github.com/Cyb3r-Assassin"
-SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz"
+SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="BSD"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+wireless +mitm +vpn"
 
-DEPEND="net-misc/bridge-utils
+DEPEND=""
+
+RDEPEND="net-misc/bridge-utils
 	>=net-firewall/iptables-1.4.20
 	net-firewall/ebtables
 	net-misc/dhcpcd
@@ -28,12 +32,13 @@ DEPEND="net-misc/bridge-utils
 	vpn? ( net-misc/openvpn )
 	sys-apps/openrc"
 
-RDEPEND="${DEPEND}"
-
 src_install() {
-	insinto /usr/lib64/
+	dodoc changes README.md
+	rm changes LICENSE README.md
+
+	insinto /usr/$(get_libdir)
 	doins -r "${S}"
+
 	fperms +x /usr/lib64/${P}/n4p.sh
-	dosym /usr/lib64/${P}/n4p.sh /usr/bin/n4p
-	dodoc changes
+	dosym /usr/$(get_libdir)/${P}/n4p.sh /usr/bin/n4p
 }
