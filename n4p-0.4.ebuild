@@ -6,7 +6,7 @@ EAPI="4"
 
 DESCRIPTION="Configures network variables automatically for MITM, ARP, and SSLstriping attacks"
 HOMEPAGE="https://github.com/Cyb3r-Assassin"
-SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${P}.tar.gz"
+SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -31,9 +31,9 @@ DEPEND="net-misc/bridge-utils
 RDEPEND="${DEPEND}"
 
 src_install() {
-	default
 	insinto /usr/lib64/
 	doins -r "${S}"
+	fperms +x /usr/lib64/${P}/n4p.sh
 	dosym /usr/lib64/${P}/n4p.sh /usr/bin/n4p
 	dodoc changes
 }
