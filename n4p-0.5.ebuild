@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation.
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -37,8 +37,8 @@ src_install() {
 	insinto /usr/$(get_libdir)
 	doins -r "${S}"
 
-	fperms +x /usr/lib64/${P}/n4p.sh
-	fperms +x /usr/lib64/${P}/n4p_iptables.sh
-	dosym /usr/$(get_libdir)/${P}/n4p.sh /usr/bin/n4p
-	dosym /usr/$(get_libdir)/${P}/n4p_iptables.sh /usr/bin/n4p_iptables
+	fperms +x /usr/$(get_libdir)/${P}/n4p.sh
+	fperms +x /usr/$(get_libdir)/${P}/n4p_iptables.sh
+	dosym /usr/$(get_libdir)/${P}/n4p.sh /usr/sbin/n4p
+	dosym /usr/$(get_libdir)/${P}/n4p_iptables.sh /usr/sbin/n4p_iptables
 }
