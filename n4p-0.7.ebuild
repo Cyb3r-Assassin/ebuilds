@@ -1,0 +1,56 @@
+# Copyright 1999-2014 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+EAPI="5"
+
+inherit eutils
+
+DESCRIPTION="Configures network variables automatically for MITM, ARP, and SSLstriping attacks"
+HOMEPAGE="https://github.com/Cyb3r-Assassin"
+SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.gz"
+
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="+wireless +mitm -vpn -extras"
+
+DEPEND=""
+
+RDEPEND="net-misc/bridge-utils
+	>=net-firewall/iptables-1.4.20
+	net-misc/dhcpcd
+	app-admin/sudo
+	sys-apps/iproute2
+	extras? ( net-analyzer/dhcpdump
+		sys-apps/net-tools )
+	wireless? ( >=net-wireless/aircrack-ng-9999
+		net-wireless/rfkill
+		>=net-wireless/hostapd-2.0-r1 )
+	mitm? ( net-analyzer/sslstrip
+		net-analyzer/dsniff
+		>=net-analyzer/ettercap-0.8.0-r1 )
+	dev-python/ipaddr
+	net-wireless/iw
+	vpn? ( net-misc/openvpn )
+	sys-apps/openrc"
+
+src_install() {
+	dodoc changes README.md
+	rm changes LICENSE README.md
+
+	insinto /usr/$(get_libdir)/${PN}
+	doins *
+
+	fperms 674 /usr/$(get_libdir)/${PN}/n4p.sh
+
+	for file in n4p_iptables.sh recon.sh monitor.sh n4p_main.sh; do
+		fperms 764 /usr/$(get_libdir)/${PN}/${file}
+	done	
+
+	for file in n4p.conf dhcpd.conf auth.logo monitor.logo opening.logo firewall.logo recon.logo; do
+		fperms 664 /usr/$(get_libdir)/${PN}/${file}
+	done
+	
+	dosym /usr/$(get_libdir)/${PN}/n4p.sh /usr/bin/n4p
+}
