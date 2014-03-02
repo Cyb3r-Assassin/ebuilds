@@ -4,8 +4,6 @@
 
 EAPI="5"
 
-inherit eutils
-
 DESCRIPTION="Configures network variables automatically for MITM, ARP, and SSLstriping attacks"
 HOMEPAGE="https://github.com/Cyb3r-Assassin"
 SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.gz"
@@ -40,15 +38,13 @@ src_install() {
 	rm changes LICENSE README.md
 
 	insinto /usr/$(get_libdir)/${PN}
-	doins *
+	doexe n4p.sh n4p_iptables.sh recon.sh monitor.sh n4p_main.sh
 
-	for file in n4p.sh n4p_iptables.sh recon.sh monitor.sh n4p_main.sh; do
-		fperms 774 /usr/$(get_libdir)/${PN}/${file}
-	done	
-
-	for file in n4p.conf dhcpd.conf auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo; do
-		fperms 664 /usr/$(get_libdir)/${PN}/${file}
-	done
+	insinto /user/share/${PN}
+	doins auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo
 	
+	insinto /etc/${PN}
+	doins n4p.conf dhcpd.conf
+		
 	dosym /usr/$(get_libdir)/${PN}/n4p.sh /usr/bin/n4p
 }
