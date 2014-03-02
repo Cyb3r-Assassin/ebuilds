@@ -39,7 +39,6 @@ RDEPEND="net-misc/bridge-utils
 
 src_install() {
 	dodoc changes README.md
-	rm changes LICENSE README.md
 	
 	exeinto /usr/$(get_libdir)/${PN}
 	doexe n4p.sh n4p_iptables.sh recon.sh monitor.sh n4p_main.sh
