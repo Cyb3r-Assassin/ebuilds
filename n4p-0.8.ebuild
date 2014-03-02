@@ -4,9 +4,9 @@
 
 EAPI="5"
 
-inherit toolchain-funcs
+inherit multilib
 
-DESCRIPTION="Configures network automatically and performs MITM, ARP, SSLstriping, WPA, Cracking, and rouge AP attacks"
+DESCRIPTION="Configures network automatically to perform MITM, ARP, SSLstrip, WPA Cracking, and rogue AP attacks"
 HOMEPAGE="https://github.com/Cyb3r-Assassin"
 SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
@@ -39,15 +39,15 @@ RDEPEND="net-misc/bridge-utils
 
 src_install() {
 	dodoc changes README.md
-	
+
 	exeinto /usr/$(get_libdir)/${PN}
 	doexe n4p.sh n4p_iptables.sh recon.sh monitor.sh n4p_main.sh
-	
+
 	dosym /usr/$(get_libdir)/${PN}/n4p.sh /usr/bin/n4p
 
 	insinto /usr/share/${PN}
 	doins auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo
-	
+
 	insinto /etc/${PN}
 	doins n4p.conf dhcpd.conf
 }
