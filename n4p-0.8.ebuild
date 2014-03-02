@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit eutils
+inherit toolchain-funcs
 
 DESCRIPTION="Configures network automatically and performs MITM, ARP, SSLstriping, WPA, Cracking, and rouge AP attacks"
 HOMEPAGE="https://github.com/Cyb3r-Assassin"
@@ -26,6 +26,7 @@ RDEPEND="net-misc/bridge-utils
 	dev-python/ipaddr
 	net-wireless/iw
 	sys-apps/openrc
+	app-editors/nano
 	extras? ( net-analyzer/dhcpdump
 		sys-apps/net-tools )
 	wireless? ( >=net-wireless/aircrack-ng-9999
