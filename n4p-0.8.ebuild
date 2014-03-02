@@ -22,6 +22,10 @@ RDEPEND="net-misc/bridge-utils
 	net-misc/dhcpcd
 	app-admin/sudo
 	sys-apps/iproute2
+	x11-terms/xterm
+	dev-python/ipaddr
+	net-wireless/iw
+	sys-apps/openrc
 	extras? ( net-analyzer/dhcpdump
 		sys-apps/net-tools )
 	wireless? ( >=net-wireless/aircrack-ng-9999
@@ -30,10 +34,7 @@ RDEPEND="net-misc/bridge-utils
 	mitm? ( net-analyzer/sslstrip
 		net-analyzer/dsniff
 		>=net-analyzer/ettercap-0.8.0-r1 )
-	dev-python/ipaddr
-	net-wireless/iw
-	vpn? ( net-misc/openvpn )
-	sys-apps/openrc"
+	vpn? ( net-misc/openvpn )"
 
 src_install() {
 	dodoc changes README.md
@@ -45,10 +46,8 @@ src_install() {
 	dosym /usr/$(get_libdir)/${PN}/n4p.sh /usr/bin/n4p
 
 	insinto /usr/share/${PN}
-	
 	doins auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo
 	
 	insinto /etc/${PN}
-	
 	doins n4p.conf dhcpd.conf
 }
