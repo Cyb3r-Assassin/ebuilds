@@ -4,9 +4,9 @@
 
 EAPI="5"
 
-inherit eutils
+inherit multilib
 
-DESCRIPTION="Configures network variables automatically for MITM, ARP, and SSLstriping attacks"
+DESCRIPTION="Configures network automatically to perform MITM, ARP, SSLstrip, WPA Cracking, and rogue AP attacks"
 HOMEPAGE="https://github.com/Cyb3r-Assassin"
 SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
@@ -22,6 +22,11 @@ RDEPEND="net-misc/bridge-utils
 	net-misc/dhcpcd
 	app-admin/sudo
 	sys-apps/iproute2
+	x11-terms/xterm
+	dev-python/ipaddr
+	net-wireless/iw
+	sys-apps/openrc
+	app-editors/nano
 	extras? ( net-analyzer/dhcpdump
 		sys-apps/net-tools )
 	wireless? ( >=net-wireless/aircrack-ng-9999
@@ -30,27 +35,19 @@ RDEPEND="net-misc/bridge-utils
 	mitm? ( net-analyzer/sslstrip
 		net-analyzer/dsniff
 		>=net-analyzer/ettercap-0.8.0-r1 )
-	dev-python/ipaddr
-	net-wireless/iw
-	vpn? ( net-misc/openvpn )
-	sys-apps/openrc"
+	vpn? ( net-misc/openvpn )"
 
 src_install() {
 	dodoc changes README.md
-	rm changes LICENSE README.md
 
-	insinto /usr/$(get_libdir)/${PN}
-	doins *
+	exeinto /usr/$(get_libdir)/${PN}
+	doexe n4p.sh n4p_iptables.sh recon.sh monitor.sh n4p_main.sh
 
-	fperms 674 /usr/$(get_libdir)/${PN}/n4p.sh
-
-	for file in n4p_iptables.sh recon.sh monitor.sh n4p_main.sh; do
-		fperms 764 /usr/$(get_libdir)/${PN}/${file}
-	done	
-
-	for file in n4p.conf dhcpd.conf auth.logo monitor.logo opening.logo firewall.logo recon.logo; do
-		fperms 664 /usr/$(get_libdir)/${PN}/${file}
-	done
-	
 	dosym /usr/$(get_libdir)/${PN}/n4p.sh /usr/bin/n4p
+
+	insinto /usr/share/${PN}
+	doins auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo wash.logo
+
+	insinto /etc/${PN}
+	doins n4p.conf dhcpd.conf
 }
