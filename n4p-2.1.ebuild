@@ -3,7 +3,6 @@
 # $Header: $
 
 EAPI="5"
-SLOT="0"
 
 inherit multilib
 
@@ -42,12 +41,12 @@ src_install() {
 	dodoc changes README.md
 
 	exeinto /usr/$(get_libdir)/${PN}
-	doexe n4p.sh
+	doexe n4p
 	
 	exeinto /usr/$(get_libdir)/${PN}/modules
         doexe airbase bridge bully cracking dhcp dump example hostapd monitor firewall rebuild_network recon wash wpe
 
-	dosym /usr/$(get_libdir)/${PN}/n4p.sh /usr/bin/n4p
+	dosym /usr/$(get_libdir)/${PN}/n4p /usr/bin/n4p
 
 	insinto /usr/share/${PN}
 	doins auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo wash.logo
