@@ -13,7 +13,7 @@ SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+wireless +mitm +wpe +wps -vpn -extras -networkmanager"
+IUSE="+wireless +mitm +wpe +wps +vpn +extras +networkmanager"
 
 PDEPEND="net-misc/bridge-utils
 	>=net-firewall/iptables-1.4.20
@@ -26,6 +26,7 @@ PDEPEND="net-misc/bridge-utils
 	sys-apps/openrc
 	app-editors/nano
 	sys-apps/net-tools
+	x11-apps/xhost
 	extras? ( net-analyzer/dhcpdump )
 	wireless? ( >=net-wireless/aircrack-ng-1.2_rc1
 		net-wireless/rfkill )
