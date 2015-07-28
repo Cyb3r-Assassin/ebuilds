@@ -15,6 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+wireless +mitm +wpe +wps +vpn +extras +networkmanager"
 
+#Remove bridge-utils whin module is updated to iproute2 07-27-15
 PDEPEND="net-misc/bridge-utils
 	>=net-firewall/iptables-1.4.20
 	net-misc/dhcpcd
@@ -24,13 +25,12 @@ PDEPEND="net-misc/bridge-utils
 	dev-python/ipaddr
 	net-wireless/iw
 	sys-apps/openrc
-	app-editors/nano
 	sys-apps/net-tools
 	x11-apps/xhost
 	extras? ( net-analyzer/dhcpdump )
 	wireless? ( >=net-wireless/aircrack-ng-1.2_rc2
 		net-wireless/rfkill )
-        wpe? ( >=net-wireless/hostapd-2.2-r2 )
+        wpe? ( >=net-wireless/hostapd-2.2-r2[wpe?,karma?,wps?] )
         wps? ( net-wireless/bully )
 	mitm? ( net-analyzer/sslstrip
 		net-analyzer/dsniff
