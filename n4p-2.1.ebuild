@@ -28,7 +28,7 @@ PDEPEND="net-misc/bridge-utils
 	sys-apps/net-tools
 	x11-apps/xhost
 	extras? ( net-analyzer/dhcpdump )
-	wireless? ( >=net-wireless/aircrack-ng-1.2_rc1
+	wireless? ( >=net-wireless/aircrack-ng-1.2_rc2
 		net-wireless/rfkill )
         wpe? ( >=net-wireless/hostapd-2.2-r2 )
         wps? ( net-wireless/bully )
