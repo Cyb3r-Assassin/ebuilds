@@ -13,7 +13,7 @@ SRC_URI="https://github.com/Cyb3r-Assassin/n4p/archive/${PV}.tar.gz -> ${P}.tar.
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+wireless +mitm +wpe +wps +vpn +extras +networkmanager"
+IUSE="+wireless +mitm +wpe +wps +vpn +extras"
 
 #Remove bridge-utils whin module is updated to iproute2 07-27-15
 PDEPEND="net-misc/bridge-utils
@@ -35,8 +35,7 @@ PDEPEND="net-misc/bridge-utils
 	mitm? ( net-analyzer/sslstrip
 		net-analyzer/dsniff
 		>=net-analyzer/ettercap-0.8.0-r1 )
-	vpn? ( net-misc/openvpn )
-	networkmanager? ( net-misc/networkmanager )"
+	vpn? ( net-misc/openvpn )"
 
 src_install() {
 	dodoc changes README.md
