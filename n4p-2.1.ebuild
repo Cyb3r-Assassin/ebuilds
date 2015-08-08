@@ -52,5 +52,5 @@ src_install() {
 	doins auth.logo die.logo dump.logo firewall.logo monitor.logo opening.logo recon.logo zed.logo wash.logo
 
 	insinto /etc/${PN}
-	doins dhcpd.conf n4p.conf
+	doins dhcpd.conf n4p.conf hostapd.conf
 }
